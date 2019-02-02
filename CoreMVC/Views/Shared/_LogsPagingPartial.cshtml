@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Mvc.Common;
+
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>ContrcatId</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.OnePageOfLogs.Count != 0)
+        {
+            @foreach (var Log in ViewBag.OnePageOfLogs)
+            {
+                <tr>
+                    <td>@Log.ContractId</td>
+                    <td>@Log.Message</td>
+                    <td>@Log.LogDate</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No Logs Found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewBag.OnePageOfLogs.Count != 0)
+
+{
+    <div class="clearfix">
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfLogs, pageNumber => Url.Action("LogViewer", new { pageNumber = pageNumber }),
+       new PagedListRenderOptions {
+           LiElementClasses = new string[] { "page-item" },
+           PageClasses = new string[] { "page-link" }
+   })
+    </div>
+}

@@ -1,0 +1,19 @@
+﻿
+@model CoreMVC.Models.ViewModels.ViewLogVM
+
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>ContrcatId</th>
+        <th>BankId</th>
+        <th>Date</th>
+    </tr>
+  @foreach (var item in Model.Contracts)
+  {
+    <tr>
+        <td>@item.ContractId</td>
+        <td>@item.BankId</td>
+        <td>@item.CreatedOn</td>
+    </tr>
+  }
+</table>

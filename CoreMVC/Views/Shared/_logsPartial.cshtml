@@ -1,0 +1,17 @@
+﻿@model CoreMVC.Models.ViewModels.ViewLogVM
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>ContrcatId</th>
+        <th>Message</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var item in Model.Logs)
+    {
+        <tr>
+            <td>@item.ContractId</td>
+            <td>@item.Message</td>
+            <td>@item.LogDate</td>
+        </tr>
+    }
+</table>

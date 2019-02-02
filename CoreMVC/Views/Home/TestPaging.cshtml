@@ -1,0 +1,54 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestPaging</title>
+</head>
+<body>
+
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>ContrcatId</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.OnePageOfLogs.Count != 0)
+            {
+                @foreach (var Log in ViewBag.OnePageOfLogs)
+                {
+                    <tr>
+                        <td>@Log.ContractId</td>
+                        <td>@Log.Message</td>
+                        <td>@Log.LogDate</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">No Logs Found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (ViewBag.OnePageOfLogs.Count != 0)
+
+    {
+        <div class="clearfix">
+            @Html.PagedListPager((IPagedList)ViewBag.OnePageOfLogs, pageNumber => Url.Action("TestPaging", new { pageNumber }))
+        </div>
+    }
+</body>
+</html>
